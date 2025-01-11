@@ -1,0 +1,36 @@
+<div class="section-title">
+  <h2>Change Tracking</h2>
+</div>
+<mat-dialog-content>
+  <table mat-table [dataSource]="changeTracking">
+
+    <ng-container matColumnDef="fieldChanged">
+      <th mat-header-cell *matHeaderCellDef> Field Changed</th>
+      <td mat-cell *matCellDef="let row"> {{ row.fieldChanged }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="description">
+      <th mat-header-cell *matHeaderCellDef> Description</th>
+      <td mat-cell *matCellDef="let row"> {{ row.description }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="changeDate">
+      <th mat-header-cell *matHeaderCellDef> Change Date</th>
+      <td mat-cell *matCellDef="let row"> {{ row.changeDate }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="userResponsible">
+      <th mat-header-cell *matHeaderCellDef> User Responsible</th>
+      <td mat-cell *matCellDef="let row"> {{ row.userResponsible }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="['fieldChanged', 'description', 'changeDate', 'userResponsible']"></tr>
+    <tr mat-row *matRowDef="let row; columns: ['fieldChanged', 'description', 'changeDate', 'userResponsible'];"></tr>
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No change records available.</td>
+    </tr>
+  </table>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="close()">Close</button>
+</mat-dialog-actions>

@@ -1,0 +1,136 @@
+<mat-card class="example-card-main">
+
+  <form [formGroup]="formTask" class="layout-container" (submit)="operate()">
+
+    <mat-card class="example-card">
+
+      <div [hidden]="true">
+        <mat-form-field>
+          <input matInput placeholder="ID" required formControlName="idTask">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Title</mat-label>
+        <input matInput placeholder="Title" required formControlName="title">
+        @if (f['title'].errors?.['required'] && f['title'].untouched){
+          <small class="invalid">Is required</small>
+        }
+        @if (f['title'].errors?.['minlength'] && f['title'].untouched){
+          <small class="invalid">Minlength is 3</small>
+        }
+        @if (f['title'].errors?.['maxlength'] && f['title'].untouched){
+          <small class="invalid">Maxlength is 255</small>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Description</mat-label>
+        <textarea matInput placeholder="Description" required formControlName="description"></textarea>
+        @if (f['description'].errors?.['required'] && f['description'].untouched){
+          <small class="invalid">Is required</small>
+        }
+        @if (f['description'].errors?.['minlength'] && f['description'].untouched){
+          <small class="invalid">Minlength is 3</small>
+        }
+        @if (f['description'].errors?.['maxlength'] && f['description'].untouched){
+          <small class="invalid">Maxlength is 1000</small>
+        }
+      </mat-form-field>
+      <!--<mat-form-field>
+        <mat-label>Start Date</mat-label>
+        <input matInput [matDatepicker]="picker" placeholder="Start Date" required formControlName="startDate">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+        @if (f['startDate'].errors?.['required'] && f['startDate'].untouched){
+          <small class="invalid">Is required</small>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>End Date</mat-label>
+        <input matInput [matDatepicker]="picker2" placeholder="End Date" required formControlName="endDate">
+        <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+        <mat-datepicker #picker2></mat-datepicker>
+        @if (f['endDate'].errors?.['required'] && f['endDate'].untouched){
+          <small class="invalid">Is required</small>
+        }
+      </mat-form-field>-->
+      <mat-form-field>
+        <mat-label>Select a Date Range:</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        @if (f['startDate'].errors?.['required'] && f['startDate'].untouched){
+          <small class="invalid">Is required</small>
+        }
+        @if (f['endDate'].errors?.['required'] && f['endDate'].untouched){
+          <small class="invalid">Is required</small>
+        }
+      </mat-form-field>
+
+      <mat-form-field>
+        <mat-label>Status</mat-label>
+        <mat-select placeholder="Status" required formControlName="status">
+          <mat-option value="PLANNING">PLANNING</mat-option>
+          <mat-option value="IN_PROGRESS">IN_PROGRESS</mat-option>
+          <mat-option value="DONE">DONE</mat-option>
+          <mat-option value="PAUSED">PAUSED</mat-option>
+          <mat-option value="BACKLOG">BACKLOG</mat-option>
+          <mat-option value="CANCELLED">CANCELLED</mat-option>
+        </mat-select>
+        @if (f['status'].errors?.['required'] && f['status'].untouched){
+          <small class="invalid">Is required</small>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Priority</mat-label>
+        <mat-select placeholder="Priority" required formControlName="priority">
+          <mat-option value="LOW">LOW</mat-option>
+          <mat-option value="MEDIUM">MEDIUM</mat-option>
+          <mat-option value="HIGH">HIGH</mat-option>
+        </mat-select>
+        @if (f['priority'].errors?.['required'] && f['priority'].untouched){
+          <small class="invalid">Is required</small>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Assigned Collaborator</mat-label>
+        <mat-select placeholder="Assigned Collaborator" formControlName="assignedCollaborator" required>
+          <mat-option *ngFor="let collaborator of collaborators" [value]="collaborator">
+            {{collaborator.name}}
+          </mat-option>
+        @if (f['assignedCollaborator'].errors?.['required'] && f['assignedCollaborator'].untouched){
+          <small class="invalid">Is required</small>
+        }
+        </mat-select>
+      </mat-form-field>
+
+
+      <div [hidden]="true">
+        <mat-form-field>
+          <input matInput placeholder="Version" required formControlName="version">
+        </mat-form-field>
+      </div>
+
+    </mat-card>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" type="submit" class="example-form-button">
+        <mat-icon>done</mat-icon>
+        <span>Done</span>
+      </button>
+
+      <button mat-raised-button color="accent" type="button" [routerLink]="['/features/projects/detail', idProject]" class="example-form-button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+      </button>
+
+
+    </mat-card-actions>
+
+  </form>
+</mat-card>
+
+

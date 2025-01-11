@@ -1,0 +1,33 @@
+
+<div class="section-title">
+  <h2>{{ isEdit ? 'Change Role' : 'Add Member' }}</h2>
+</div>
+<mat-dialog-content>
+  <form [formGroup]="memberForm">
+    <mat-form-field appearance="fill" *ngIf="!isEdit" class="full-width">
+      <mat-label>Collaborator</mat-label>
+      <mat-select formControlName="collaborator">
+        <mat-option *ngFor="let collaborator of data.collaborators" [value]="collaborator">
+          {{ collaborator.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Rol</mat-label>
+      <mat-select formControlName="role">
+        <mat-option *ngFor="let role of roles" [value]="role">
+          {{ role }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="memberForm.invalid" (click)="save()">
+    {{ isEdit ? 'Update' : 'Done' }}
+  </button>
+</mat-dialog-actions>
+

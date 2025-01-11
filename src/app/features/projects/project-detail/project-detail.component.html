@@ -1,0 +1,101 @@
+<div class="section-title">
+  <h2>Project</h2>
+</div>
+<ng-container *ngIf="project">
+  <mat-card appearance="outlined" class="project-card" [ngClass]="'border-' + project.project.status.toLowerCase()">
+    <mat-toolbar>
+      <mat-toolbar-row>
+        <span>{{'['+project.project.idProject+']'}} {{ project.project.name }}</span>
+        <span class="spacer"></span>
+        <span class="project-status" [ngClass]="'text-' + project.project.status.toLowerCase()">
+        {{ project.project.status }}</span>
+        <span class="spacer"></span>
+        <button mat-icon-button [matMenuTriggerFor]="menu">
+          <mat-icon>more_vert</mat-icon>
+        </button>
+        <mat-menu #menu="matMenu">
+          <button mat-menu-item (click)="openEditDialog(project)">
+            <mat-icon color="primary">edit</mat-icon>
+            <span>Edit</span>
+          </button>
+          <button mat-menu-item (click)="deleteProject(project)" >
+            <mat-icon color="warn">delete</mat-icon>
+            <span>Delete</span>
+          </button>
+        </mat-menu>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <span class="project-description" >{{ project.project.description }}</span>
+      </mat-toolbar-row>
+
+      <mat-toolbar-row>
+        <span class="project-start-date" >Start Date: {{ project.project.startDate }}</span>
+        <span class="spacer"></span>
+        <span class="project-start-date" >End Date: {{ project.project.endDate }}</span>
+      </mat-toolbar-row>
+    </mat-toolbar>
+
+    <mat-accordion class="project-headers-align" multi>
+      <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title> Team Members </mat-panel-title>
+          <mat-panel-description>
+            <span class="spacer"></span>
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <div class="members-container">
+          <mat-card
+            class="member-card"
+            *ngFor="let member of project.members"
+            appearance="outlined"
+          >
+            <mat-card-header>
+              <div mat-card-avatar class="member-avatar">
+                <mat-icon>person</mat-icon>
+              </div>
+              <mat-card-title>{{ member.member.name }}</mat-card-title>
+              <mat-card-subtitle>{{ member.role }}</mat-card-subtitle>
+            </mat-card-header>
+
+            <mat-card-content>
+              <p>{{ member.member.email }}</p>
+            </mat-card-content>
+
+            <mat-card-actions>
+              <button mat-icon-button color="primary" (click)="openEditMember(project, member)">
+                <mat-icon>edit</mat-icon>
+              </button>
+              <button mat-icon-button color="warn" (click)="removeMember(project, member)">
+                <mat-icon>delete</mat-icon>
+              </button>
+            </mat-card-actions>
+          </mat-card>
+          <button mat-fab color="primary" (click)="openAddMember(project)" type="button">
+            <mat-icon>add</mat-icon>
+          </button>
+        </div>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="true">
+        <mat-expansion-panel-header>
+          <mat-panel-title> Tasks </mat-panel-title>
+          <mat-panel-description>
+            <span class="spacer"></span>
+            <mat-icon>task</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+
+        <app-task [idProject]="project.project.idProject"></app-task>
+      </mat-expansion-panel>
+    </mat-accordion>
+    <mat-card-actions align="end" class="margin-top-20" >
+      <button mat-raised-button [routerLink]="['/features/projects']">
+        <mat-icon>arrow_back</mat-icon>
+        Back to Projects
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</ng-container>

@@ -1,0 +1,94 @@
+<div class="section-title">
+  <h2>Edit Project</h2>
+</div>
+<mat-dialog-content [formGroup]="projectForm">
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Project Name</mat-label>
+    <input
+      matInput
+      formControlName="name"
+      placeholder="Enter project name"
+      required
+    />
+    <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
+      Project Name is required
+    </mat-error>
+    <mat-error *ngIf="projectForm.get('name')?.hasError('maxlength')">
+      Name cannot exceed 50 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      formControlName="description"
+      placeholder="Enter project description"
+    ></textarea>
+    <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
+      Description is required
+    </mat-error>
+    <mat-error *ngIf="projectForm.get('description')?.hasError('maxlength')">
+      Description cannot exceed 200 characters
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>Status</mat-label>
+    <mat-select formControlName="status" required>
+      <mat-option *ngFor="let status of statuses" [value]="status">
+        {{ status }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="projectForm.get('status')?.hasError('required')">
+      Status is required
+    </mat-error>
+  </mat-form-field>
+  <mat-form-field appearance="fill"  class="full-width">
+    <mat-label>Select a Date Range:</mat-label>
+    <mat-date-range-input [rangePicker]="picker">
+      <input matStartDate formControlName="startDate" placeholder="Start date">
+      <input matEndDate formControlName="endDate" placeholder="End date">
+    </mat-date-range-input>
+    <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+    <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-date-range-picker #picker></mat-date-range-picker>
+    @if (projectForm.get('startDate').hasError('matStartDateInvalid')) {
+      <mat-error>Invalid start date</mat-error>
+    }
+    @if (projectForm.get('endDate').hasError('matEndDateInvalid')) {
+      <mat-error>Invalid end date</mat-error>
+    }
+  </mat-form-field>
+
+  <!--<mat-form-field appearance="fill" class="full-width">
+    <mat-label>Start Date</mat-label>
+    <input matInput type="date" formControlName="startDate" required />
+    <mat-error *ngIf="projectForm.get('startDate')?.hasError('required')">
+      Start Date is required
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="fill" class="full-width">
+    <mat-label>End Date</mat-label>
+    <input matInput type="date" formControlName="endDate" />
+    <mat-error *ngIf="projectForm.get('endDate')?.hasError('dateRange')">
+      End Date must be after Start Date
+    </mat-error>
+  </mat-form-field>-->
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="projectForm.invalid"
+    (click)="saveChanges()"
+  >
+    Save
+  </button>
+</mat-dialog-actions>
+
+
+

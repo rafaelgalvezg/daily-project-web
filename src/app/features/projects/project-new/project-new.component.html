@@ -1,0 +1,114 @@
+<div class="section-title">
+  <h2>Create New Project</h2>
+</div>
+<mat-card class="example-card-main">
+  <form [formGroup]="projectForm" (ngSubmit)="saveProject()" class="layout-container">
+    <mat-card class="example-card">
+      <div [hidden]="true">
+        <mat-form-field>
+          <input matInput required formControlName="idProject">
+        </mat-form-field>
+      </div>
+      <mat-form-field >
+        <mat-label>Project Name</mat-label>
+        <input matInput formControlName="name" required />
+        <mat-error *ngIf="projectForm.get('name')?.hasError('required')">
+          Project name is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>Description</mat-label>
+        <textarea matInput formControlName="description" required ></textarea>
+        <mat-error *ngIf="projectForm.get('description')?.hasError('required')">
+          Description is required
+        </mat-error>
+      </mat-form-field>
+
+     <!-- <mat-form-field >
+        <mat-label>Start Date</mat-label>
+        <input matInput formControlName="startDate" type="date" required />
+        <mat-error *ngIf="projectForm.get('startDate')?.hasError('required')">
+          Start date is required
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>End Date</mat-label>
+        <input matInput formControlName="endDate" type="date" required />
+        <mat-error *ngIf="projectForm.get('endDate')?.hasError('required')">
+          End date is required
+        </mat-error>
+      </mat-form-field>-->
+
+      <mat-form-field>
+        <mat-label>Select a Date Range:</mat-label>
+        <mat-date-range-input [rangePicker]="picker">
+          <input matStartDate formControlName="startDate" placeholder="Start date">
+          <input matEndDate formControlName="endDate" placeholder="End date">
+        </mat-date-range-input>
+        <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-date-range-picker #picker></mat-date-range-picker>
+        @if (projectForm.get('startDate').hasError('matStartDateInvalid')) {
+          <mat-error>Invalid start date</mat-error>
+        }
+        @if (projectForm.get('endDate').hasError('matEndDateInvalid')) {
+          <mat-error>Invalid end date</mat-error>
+        }
+      </mat-form-field>
+
+      <mat-form-field >
+        <mat-label>Status</mat-label>
+        <mat-select formControlName="status" required>
+          <mat-option *ngFor="let status of statuses" [value]="status">
+            {{ status }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="projectForm.get('status')?.hasError('required')">
+          Status is required
+        </mat-error>
+      </mat-form-field>
+
+      <div class="section-title">
+        <h2>Team Members</h2>
+      </div>
+      <div class="members-container">
+
+      <mat-card *ngFor="let member of members; index as i" class="member-card" appearance="outlined">
+        <mat-card-header>
+          <div mat-card-avatar class="member-avatar">
+            <mat-icon>person</mat-icon>
+          </div>
+          <mat-card-title>{{ member.member.name }}</mat-card-title>
+          <mat-card-subtitle>{{ member.role }}</mat-card-subtitle>
+        </mat-card-header>
+        <mat-card-content>
+          <p>{{ member.member.email }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+          <button mat-icon-button color="warn" (click)="removeMember(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-card-actions>
+      </mat-card>
+        <mat-error *ngIf="projectForm.hasError('noMembers')">
+          You must add at least one team member.
+        </mat-error>
+        <button mat-fab color="primary" (click)="addMember()" type="button">
+          <mat-icon>add</mat-icon>
+        </button>
+      </div>
+      <mat-card-actions align="end">
+        <button mat-raised-button color="primary" type="submit" [disabled]="projectForm.invalid || members.length === 0"  class="example-form-button">
+          <mat-icon>done</mat-icon>
+          <span>Done</span>
+        </button>
+        <button mat-raised-button color="accent" type="button" [routerLink]="['/features/projects']" class="example-form-button">
+          <mat-icon>cancel</mat-icon>
+          <span>Cancel</span>
+        </button>
+      </mat-card-actions>
+    </mat-card>
+  </form>
+</mat-card>

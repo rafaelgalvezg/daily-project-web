@@ -1,0 +1,60 @@
+<mat-card class="example-card-main">
+
+<!--  <mat-card-header>
+    <mat-card-title>TAGS</mat-card-title>
+  </mat-card-header>-->
+  <form [formGroup]="form" class="layout-container" (submit)="operate()">
+
+    <mat-card class="example-card">
+
+      <div [hidden]="true">
+        <mat-form-field>
+          <input matInput placeholder="ID" required formControlName="idTag">
+        </mat-form-field>
+      </div>
+
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput placeholder="Name" required formControlName="name">
+         @if (f['name'].errors?.['required'] && f['name'].untouched){
+           <small class="invalid">Is required</small>
+         }
+         @if (f['name'].errors?.['minlength'] && f['name'].untouched){
+           <small class="invalid">Minlength is 3</small>
+         }
+        @if (f['name'].errors?.['maxlength'] && f['name'].untouched){
+          <small class="invalid">Maxlength is 50</small>
+        }
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Color</mat-label>
+        <input matInput placeholder="Color" required formControlName="color">
+       @if (f['color'].errors?.['required'] && f['color'].untouched){
+         <small class="invalid">Is required</small>
+       }
+        @if (f['color'].errors?.['pattern'] && f['color'].untouched){
+          <small class="invalid">color is invalid</small>
+        }
+      </mat-form-field>
+      <div [hidden]="true">
+        <mat-form-field>
+          <input matInput placeholder="Version" required formControlName="version">
+        </mat-form-field>
+      </div>
+
+    </mat-card>
+    <mat-card-actions align="end">
+      <button mat-raised-button color="primary" type="submit" class="example-form-button">
+        <mat-icon>done</mat-icon>
+        <span>Done</span>
+      </button>
+
+      <button mat-raised-button color="accent" type="button" routerLink="/features/tags" class="example-form-button">
+        <mat-icon>cancel</mat-icon>
+        <span>Cancel</span>
+      </button>
+
+    </mat-card-actions>
+
+  </form>
+</mat-card>

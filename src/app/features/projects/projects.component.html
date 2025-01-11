@@ -1,0 +1,151 @@
+<router-outlet></router-outlet>
+<div [hidden]="checkChildren()">
+
+  <div class="section-title">
+    <h2>Projects</h2>
+  </div>
+
+  <mat-card class="card-search">
+    <form [formGroup]="formSearch" (ngSubmit)="search()" class="form-container">
+      <div class="row">
+        <mat-form-field appearance="outline" class="field">
+          <input matInput placeholder="Project Name" formControlName="name">
+        </mat-form-field>
+        <mat-form-field appearance="outline" class="field">
+          <input matInput placeholder="Project Description" formControlName="description">
+        </mat-form-field>
+      </div>
+
+      <div class="row second-row">
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Status</mat-label>
+          <mat-select formControlName="status">
+            <mat-option *ngFor="let status of statuses" [value]="status">
+              {{ status }}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="field">
+          <mat-label>Select a Date Range:</mat-label>
+          <mat-date-range-input [rangePicker]="picker">
+            <input matStartDate formControlName="startDate" placeholder="Start date">
+            <input matEndDate formControlName="endDate" placeholder="End date">
+          </mat-date-range-input>
+          <mat-hint>MM/DD/YYYY – MM/DD/YYYY</mat-hint>
+          <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+          <mat-date-range-picker #picker></mat-date-range-picker>
+        </mat-form-field>
+      </div>
+
+      <div class="row button-row">
+        <button mat-raised-button color="accent" type="button" (click)="clearForm()" class="clear-button">
+          <mat-icon class="button-icon">clear</mat-icon>
+          Clear
+        </button>
+        <button mat-raised-button color="primary" type="submit" class="search-button">
+          <mat-icon class="button-icon">search</mat-icon>
+          Search
+        </button>
+      </div>
+    </form>
+
+    <div class="add-container">
+      <button mat-fab extended color="primary" routerLink="/features/projects/new" aria-label="Add new project" class="add-button">
+        <mat-icon>add</mat-icon>
+        New Project
+      </button>
+    </div>
+  </mat-card>
+
+
+
+  <ng-container *ngFor="let project of projects;">
+    <mat-card appearance="outlined" class="project-card" [ngClass]="'border-' + project.project.status.toLowerCase()">
+      <mat-toolbar>
+        <mat-toolbar-row>
+          <span>{{ '[' + project.project.idProject + ']' }} {{ project.project.name }}</span>
+          <span class="spacer"></span>
+          <span class="project-status" [ngClass]="'text-' + project.project.status.toLowerCase()">
+          {{ project.project.status }}
+        </span>
+          <span class="spacer"></span>
+          <button mat-icon-button [matMenuTriggerFor]="menu">
+            <mat-icon>more_vert</mat-icon>
+          </button>
+          <mat-menu #menu="matMenu">
+            <button mat-menu-item (click)="openEditDialog(project)">
+              <mat-icon color="primary">edit</mat-icon>
+              <span>Edit</span>
+            </button>
+            <button mat-menu-item (click)="deleteProject(project)">
+              <mat-icon color="warn">delete</mat-icon>
+              <span>Delete</span>
+            </button>
+          </mat-menu>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+          <span class="project-description">{{ project.project.description }}</span>
+        </mat-toolbar-row>
+
+        <mat-toolbar-row>
+          <span class="project-start-date">Start Date: {{ project.project.startDate }}</span>
+          <span class="spacer"></span>
+          <span class="project-start-date">End Date: {{ project.project.endDate }}</span>
+        </mat-toolbar-row>
+      </mat-toolbar>
+
+      <mat-accordion class="project-headers-align" multi>
+        <mat-expansion-panel>
+          <mat-expansion-panel-header>
+            <mat-panel-title> Team Members</mat-panel-title>
+            <mat-panel-description>
+              <span class="spacer"></span>
+              <mat-icon>account_circle</mat-icon>
+            </mat-panel-description>
+          </mat-expansion-panel-header>
+
+          <div class="members-container">
+            <mat-card  class="member-card" *ngFor="let member of project.members" appearance="outlined">
+              <mat-card-header>
+                <div mat-card-avatar class="member-avatar">
+                  <mat-icon>person</mat-icon>
+                </div>
+                <mat-card-title>{{ member.member.name }}</mat-card-title>
+                <mat-card-subtitle>{{ member.role }}</mat-card-subtitle>
+              </mat-card-header>
+
+              <mat-card-content>
+                <p>{{ member.member.email }}</p>
+              </mat-card-content>
+
+              <mat-card-actions>
+                <button mat-icon-button color="primary" (click)="openEditMember(project, member)">
+                  <mat-icon>edit</mat-icon>
+                </button>
+                <button mat-icon-button color="warn" (click)="removeMember(project, member)">
+                  <mat-icon>delete</mat-icon>
+                </button>
+              </mat-card-actions>
+            </mat-card>
+            <button mat-fab color="primary" (click)="openAddMember(project)">
+              <mat-icon>add</mat-icon>
+            </button>
+          </div>
+
+        </mat-expansion-panel>
+      </mat-accordion>
+      <mat-card-actions align="end" class="margin-top-20">
+        <button mat-stroked-button color="primary" (click)="redirectToDetails(project.project.idProject)">
+          <mat-icon class="button-icon">open_in_new</mat-icon>
+          Open
+        </button>
+      </mat-card-actions>
+
+    </mat-card>
+  </ng-container>
+
+  <div class="load-more-container" *ngIf="projects.length > 0"> <button mat-flat-button (click)="loadMore()" class="project-action-buttons"> Load More Projects </button>
+</div>
+

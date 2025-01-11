@@ -1,0 +1,37 @@
+
+.example-card-main {
+  margin: 20px;
+  padding: 5px;
+}
+
+.example-card {
+  margin: 15px 5px 15px 5px;
+  padding: 5px;
+}
+
+.example-card-content {
+  display: flex;
+  flex-direction: column;
+  margin: 5px;
+  padding: 5px;
+}
+
+.example-form-button {
+  margin: 0 8px 0 8px;
+}
+
+.example-card-content-detail mat-form-field + mat-form-field {
+  margin-left: 8px;
+}
+
+.example-card-content-detail mat-form-field + mat-form-field + button {
+  margin-left: 8px;
+}
+
+.example-card-content-detail mat-form-field + button {
+  margin-left: 8px;
+}
+
+.invalid {
+  color: red;
+}

@@ -1,0 +1,123 @@
+
+.project-card {
+  margin: 50px 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left-width: 5px;
+  border-left-style: solid;
+  background-color: #f7f8fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar-row {
+  display: flex;
+  align-items: center;
+}
+
+.mat-toolbar {
+  margin-bottom: 16px;
+}
+
+.project-description {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-start-date {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-end-date {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-action-buttons {
+  margin-bottom: 50px;
+}
+
+.load-more-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.project-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+  padding: 16px;
+}
+
+.member-card {
+  width: 300px;
+}
+
+.member-avatar {
+  background-color: #e0e0e0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.member-avatar mat-icon {
+  font-size: 24px;
+  color: #757575;
+}
+
+.card-search {
+  margin: auto auto 16px auto;
+  max-width: 800px;
+  padding: 20px;
+}
+
+.row {
+  display: flex;
+  gap: 16px;
+  margin-bottom: 16px;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.field {
+  flex: 1;
+  min-width: 250px;
+}
+
+
+.mat-date-range-input {
+  display: flex;
+  flex-direction: column;
+}
+
+.add-container {
+  justify-content: center;
+  margin-top: 16px;
+  text-align: center;
+}
+
+.add-button {
+  margin-top: 16px;
+}
+
+
+
+
+

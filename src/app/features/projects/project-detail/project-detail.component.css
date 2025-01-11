@@ -1,0 +1,92 @@
+/*
+.project-card {
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 8px;
+  margin: 30px 0;
+  padding: 20px;
+  background-color: #f0f2eb !*#f7f8fc*!;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+*/
+
+.project-card {
+  margin: 50px 16px;
+  padding: 16px;
+  border-radius: 8px;
+  border-left-width: 5px;
+  border-left-style: solid;
+  background-color: #f7f8fc;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.mat-toolbar-row {
+  display: flex;
+  align-items: center;
+}
+
+.mat-toolbar {
+  margin-bottom: 16px;
+}
+
+
+.project-description {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-start-date {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-end-date {
+  font-size: 17px;
+  color: #424242;
+}
+
+.project-action-buttons {
+  margin-bottom: 30px;
+}
+
+.project-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+.example-headers-align .mat-mdc-form-field + .mat-mdc-form-field {
+  margin-left: 8px;
+}
+
+
+/* Contenedor para las tarjetas */
+.members-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px; /* Espacio entre tarjetas */
+  padding: 16px;
+}
+
+/* Estilo de cada tarjeta */
+.member-card {
+  width: 300px; /* Ancho fijo para las tarjetas */
+}
+
+/* Ícono de avatar personalizado */
+.member-avatar {
+  background-color: #e0e0e0; /* Fondo gris */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+}
+
+.member-avatar mat-icon {
+  font-size: 24px;
+  color: #757575; /* Color del ícono */
+}
