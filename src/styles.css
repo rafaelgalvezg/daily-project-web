@@ -1,1 +1,144 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.section-title {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.section-title h2 {
+  font-size: 2rem;
+  font-weight: bold;
+  color: blueviolet; /* Color del título */
+  margin: 0;
+  padding-bottom: 10px;
+  /*border-bottom: 2px solid blueviolet; */
+  display: inline-block;
+}
+
+.container-table {
+  justify-content: center;
+  align-items: center;
+  margin: 20px;
+}
+
+/*.header-toolbar {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  padding: 10px 16px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  !* border: 1px solid #e0e0e0; Añade un borde a la barra de herramientas *!
+}*/
+
+.header-content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.header-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: auto;
+  color: blueviolet;
+}
+
+.search-container {
+  flex-grow: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 400px;
+  height: 56px;
+  margin: 0 16px;
+}
+
+.add-button {
+  flex-shrink: 0;
+  margin-left: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.search-bar .mat-form-field-outline { border-color: #e0e0e0; /* Color de borde más claro */ }
+
+.margin-top-20 { margin-top: 20px; }
+.margin-right-20 { margin-right: 20px; }
+.margin-button-50 { margin-bottom: 20px; }
+
+.border-in_progress {
+  border-left-color: #82c9e6 !important;/* Azul pastel claro */
+}
+
+.border-cancelled {
+  border-left-color: #f28b82 !important; /* Rojo coral pastel */
+}
+
+.border-done {
+  border-left-color: #81c995 !important; /* Verde menta pastel */
+}
+
+.border-planning {
+  border-left-color: #fce68a !important; /* Amarillo pastel suave */
+}
+
+.border-paused {
+  border-left-color: #d7d7e8 !important; /* Gris lavanda claro */
+}
+
+.border-backlog {
+  border-left-color: #d2b69c !important; /* Marrón beige pastel */
+}
+
+.text-in_progress {
+  color: #004c6d; /* Azul oscuro */
+  background-color: #e0f7fd; /* Fondo azul muy claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.text-cancelled {
+  color: #7a1a1a; /* Rojo oscuro */
+  background-color: #fdecea; /* Fondo rojo claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.text-done {
+  color: #1b5e20; /* Verde oscuro */
+  background-color: #e8f5e9; /* Fondo verde claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.text-planning {
+  color: #7f5f00; /* Amarillo oscuro */
+  background-color: #fffde7; /* Fondo amarillo claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.text-paused {
+  color: #3c3c3c; /* Gris oscuro */
+  background-color: #f4f4f9; /* Fondo gris claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
+
+.text-backlog {
+  color: #5d4037; /* Marrón oscuro */
+  background-color: #f3e5dc; /* Fondo marrón claro */
+  padding: 2px 8px;
+  border-radius: 4px;
+}
