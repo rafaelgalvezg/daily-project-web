@@ -25,7 +25,11 @@ export const appConfig: ApplicationConfig = {
         config: {
           tokenGetter: tokenGetter,
           allowedDomains: ["localhost:9090"],
-          disallowedRoutes: ["http://localhost:9090/daily-project/login/forget"]
+          disallowedRoutes: [
+            "http://localhost:9090/daily-project/login",
+            "http://localhost:9090/daily-project/login/forget"
+          ]
+
         },
       }),
     ),
