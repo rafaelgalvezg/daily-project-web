@@ -31,7 +31,7 @@ Daily Project Frontend is an Angular application designed to manage projects, ta
 ## Installation and Setup
 1. Clone the repository:
    ```bash
-   git clone <FRONTEND_REPOSITORY_URL>
+   git clone https://github.com/rafaelgalvezg/daily-project-web.git
    ```
 2. Navigate to the project directory:
    ```bash
