@@ -1,27 +1,77 @@
-# DailyProjectWeb
+# Daily Project Frontend
+Daily Project Frontend is an Angular application designed to manage projects, tasks, collaborators, and permissions. It consumes the RESTful API provided by the Daily Project backend and offers a responsive user interface using Angular Material Design.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.11.
+## Technologies Used
+- **Angular 18.2.1**
+- **Angular Material Design**
+- **TypeScript**
+- **RxJS** for reactive programming.
+- **NgRx** for state management.
+- **@auth0/angular-jwt 5.2.0** for JWT handling.
 
-## Development server
+## Key Features
+1. **Authentication and Authorization:**
+   - JWT-based authentication integrated with the backend.
+   - Role-based access control (RBAC).
+2. **Project and Task Management:**
+   - CRUD for projects, tasks, collaborators, and tags.
+   - Role assignment for project collaborators.
+   - Task change tracking and state management.
+3. **UI Components:**
+   - Angular Material components for a modern UI.
+   - Responsive design for various screen sizes.
+4. **Routing and Navigation:**
+   - Angular Router for page navigation.
+   - Route guards for secure navigation.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Requirements to Run the Project
+- Node.js (version 18 or higher)
+- **Interceptors:** Implemented for JWT token injection and error handling.
 
-## Code scaffolding
+## Installation and Setup
+1. Clone the repository:
+   ```bash
+   git clone <FRONTEND_REPOSITORY_URL>
+   ```
+2. Navigate to the project directory:
+   ```bash
+    cd daily-project-frontend
+    ```
+3. Install the dependencies:
+    ```bash
+    npm install
+    ```
+4. Run the application:
+    ```bash
+    ng serve
+    ```
+5. Open the browser and navigate to `http://localhost:4200/` to view the application.
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+**Note:** The application requires the backend API to be running. Make sure to start the backend server before running the frontend application.
+- [Daily Project Backend Repository](https://github.com/rafaelgalvezg/daily-project-api.git)
 
-## Build
+## Pending Tasks (Backlog)
+- Implement unit tests.
+- Implement end-to-end tests.
+- Design and implement the dashboard for project overview and task tracking
+- Improve task management views.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
 
-## Running unit tests
+## System Screenshots
+### Login View
+![Dashboard Screenshot](./docs/screenshots/login.png)
+### Project Management View
+![Project_Management Screenshot](./docs/screenshots/project-management.png)
+### Project Management Member Team View
+![Project_Management_Member_Team Screenshot](./docs/screenshots/project-team-management.png)
+### Project Task Management View
+![Project_Task_Management Screenshot](./docs/screenshots/project-task-management.png)
+### Collaborator Management View
+![Collaborator_Management Screenshot](./docs/screenshots/collaborator-management.png)
+### Tag Management View
+![Tag_Management Screenshot](./docs/screenshots/tag-management.png)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+## License
+This project is licensed under the MIT license. See the `LICENSE` file for more details.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
